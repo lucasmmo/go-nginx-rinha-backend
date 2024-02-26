@@ -1,7 +1,8 @@
 services:
   app1: &app
-    build:
-      context: ./app/
+    # build:
+    #   context: ./app/
+    image: lucasmocerinomonteiro/golang-rinha-backend
     environment:
       DB_HOST: db
       DB_USER: admin
