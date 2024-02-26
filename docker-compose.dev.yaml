@@ -1,0 +1,26 @@
+services:
+  app:
+    build:
+      context: ./app/
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./app/:/app
+    environment:
+      DB_HOST: db
+      DB_USER: admin
+      DB_PASS: 123
+      DB_NAME: rinha
+      DB_PORT: 5432
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: rinha
+    volumes:
+      - ./db/script.sql:/docker-entrypoint-initdb.d/script.sql
